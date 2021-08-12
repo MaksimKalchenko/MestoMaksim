@@ -35,6 +35,7 @@ const popupEditSubmit = (evt) => {
     evt.preventDefault();
     profileTitle.textContent = popupEditTitle.value;
     profileSubtitle.textContent = popupEditSubtitle.value;
+    closePopup(popupEdit);
 };
 const popupAddSubmit = (evt) => {
     evt.preventDefault();
@@ -42,6 +43,8 @@ const popupAddSubmit = (evt) => {
     fromForm.name = document.querySelector('.popup__title-add').value;
     fromForm.link = document.querySelector('.popup__link-add').value;
     addCard(fromForm, elementsList);
+    formAddElement.reset();
+    closePopup(popupAdd);
 };
 
 //                                                                  слушатели на кнопки
@@ -59,7 +62,7 @@ formEditElement.addEventListener('submit', popupEditSubmit);
 formAddElement.addEventListener('submit', popupAddSubmit);
 popupElementClose.addEventListener('click', (evt) => {
   closePopup(popupElement);
-})
+});
 
 
 
@@ -87,17 +90,15 @@ function createCard(cardData) {
         event.currentTarget.classList.toggle('element__button-heart_active');
     } );
     elementButtonTrash.addEventListener('click', (evt) => {
-      evt.stopPropagation();
         cardElement.remove();
     });
-    cardElement.addEventListener('click', () => {
+    elementImage.addEventListener('click', () => {
       popupElementImg.setAttribute('src', cardData.link);
+      popupElementImg.setAttribute('alt', cardData.name);
       popupElementText.textContent = cardData.name;
-      console.log(popupElementText, cardData.name);
       popupElement.classList.toggle('popup_opened');
     });
     
-    cardElement.setAttribute('src', cardData.link);
     elementImage.setAttribute('src', cardData.link);
     elementImage.setAttribute('alt', cardData.name);
     elementText.textContent = cardData.name;
