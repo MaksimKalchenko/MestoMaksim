@@ -91,6 +91,8 @@ const popupAddSubmit = (evt) => {
 //                                                                  слушатели на кнопки
 
 profileEditBotton.addEventListener('click',() => {
+    popupEditTitle.value = profileTitle.textContent;
+    popupEditSubtitle.value = profileSubtitle.textContent;
     openPopup(popupEdit);
 });
 editCloseButton.addEventListener('click',() => {
